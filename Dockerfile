@@ -18,8 +18,8 @@ RUN /scripts/_fix_symlinks.sh
 
 # Provide a /sysroot/.env that sets up the appropriate Rust and C flags
 RUN echo "# Compiler flags" > /sysroot/.env
-RUN echo export RUSTFLAGS=\"-C link-arg=-L/sysroot/lib/`uname -m`-linux-gnu -C link-arg=-L/sysroot/usr/lib/`uname -m`-linux-gnu -C link-arg=--sysroot=/sysroot $RUSTFLAGS\" >> /sysroot/.env
-RUN echo export CFLAGS=\"-L/sysroot/lib/`uname -m`-linux-gnu -L/sysroot/usr/lib/`uname -m`-linux-gnu --sysroot=/sysroot $CFLAGS\" >> /sysroot/.env
+RUN echo export RUSTFLAGS=\"-C link-arg=-L/sysroot/lib/`uname -m`-unknown-linux-gnu -C link-arg=-L/sysroot/usr/lib/`uname -m`-unknown-linux-gnu -C link-arg=--sysroot=/sysroot $RUSTFLAGS\" >> /sysroot/.env
+RUN echo export CFLAGS=\"-L/sysroot/lib/`uname -m`-unknown-linux-gnu -L/sysroot/usr/lib/`uname -m`-unknown-linux-gnu --sysroot=/sysroot $CFLAGS\" >> /sysroot/.env
 
 # Test the sysroot by building a Rust program that uses various bits of libc/libm/libdl and trying
 # to run it in a chroot /sysroot.
